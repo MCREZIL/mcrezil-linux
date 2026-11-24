@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# MCREZIL LINUX installer (built for Android 12+ phones with about 20 GB free): runs Linux (Kali, Ubuntu, Debian or Alpine) inside Android using Termux.
+# MCREZIL LINUX installer runs Linux (Kali, Ubuntu, Debian or Alpine) inside Android using Termux.
 # No root and no bootloader unlock needed. Usage: bash install-linux.sh [kali|ubuntu|debian|alpine] [desktop|terminal] [standard|top10|web]
 set -e
 G="\033[1;32m"; Y="\033[1;33m"; R="\033[1;31m"; B="\033[1;36m"; N="\033[0m"
