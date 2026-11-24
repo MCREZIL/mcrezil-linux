@@ -3,163 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MCREZIL LINUX: Kali, Ubuntu and more on your Android</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>MCREZIL LINUX — Kali, Ubuntu & More on Android</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-:root{--bg:#060505;--card:#120e0e;--ink:#f3ecdc;--muted:#b9ac95;--line:#3d3023;--accent:#d9b25f;--accent-ink:#1a1206;--ok:#5fd3a0;--sun:#d41f2a;
---sans:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
+:root{--bg:#05070a;--card:rgba(18,22,30,.82);--ink:#f5f1e8;--muted:#a8b0bd;--line:rgba(255,255,255,.12);--accent:#d9b25f;--accent2:#f0d48a;--accent-ink:#1a1206;--ok:#5fd3a0;--blue:#00c6ff;--sans:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url(background.jpg) center/contain no-repeat fixed;background-color:#000;color:var(--ink);font:18px/1.55 var(--sans);padding:20px 16px 60px}
-.wrap{max-width:680px;margin:0 auto}
-h1{font-size:2rem;font-weight:800;margin:8px 0 4px;letter-spacing:-.02em}
-h2{font-size:1.45rem;font-weight:800;margin:0 0 6px}
+body{margin:0;background:#020a12;color:var(--ink);font:18px/1.55 var(--sans);padding:20px 16px 80px;overflow-x:hidden;position:relative}
+
+/* ===== FAST WAVING WATER ===== */
+.water{position:fixed;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(180deg,#01040a 0%,#031a2e 40%,#053a5a 70%,#074a72 100%)}
+.water::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,198,255,.35),transparent 55%);animation:glow 2.5s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.6}to{opacity:1}}
+.bubble{position:absolute;bottom:-20px;background:rgba(255,255,255,.45);border-radius:50%;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) translateX(30px);opacity:0}}
+.bubble:nth-child(1){left:8%;width:9px;height:9px;animation-duration:4s}
+.bubble:nth-child(2){left:22%;width:13px;height:13px;animation-duration:5s;animation-delay:.4s}
+.bubble:nth-child(3){left:38%;width:7px;height:7px;animation-duration:3.5s;animation-delay:.8s}
+.bubble:nth-child(4){left:55%;width:15px;height:15px;animation-duration:5.5s;animation-delay:.2s}
+.bubble:nth-child(5){left:70%;width:10px;height:10px;animation-duration:4.5s;animation-delay:1s}
+.bubble:nth-child(6){left:85%;width:8px;height:8px;animation-duration:4s;animation-delay:1.2s}
+.bubble:nth-child(7){left:48%;width:11px;height:11px;animation-duration:5s;animation-delay:1.4s}
+.bubble:nth-child(8){left:15%;width:6px;height:6px;animation-duration:3s;animation-delay:.6s}
+.waves{position:absolute;left:0;bottom:0;width:100%;height:260px;overflow:hidden}
+.wave{position:absolute;left:0;bottom:0;width:200%;height:100%;background-repeat:repeat-x;background-size:50% 100%;animation:waveMove linear infinite}
+.wave1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,110 400,10 600,60 C800,110 1000,10 1200,60 L1200,120 L0,120 Z' fill='%2300c6ff' fill-opacity='0.35'/%3E%3C/svg%3E");animation-duration:2.2s;opacity:.9}
+.wave2{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C250,20 450,110 700,60 C950,10 1050,100 1200,60 L1200,120 L0,120 Z' fill='%23007bff' fill-opacity='0.55'/%3E%3C/svg%3E");animation-duration:1.6s;animation-direction:reverse;opacity:.9}
+.wave3{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C300,30 600,110 900,70 C1050,50 1150,80 1200,70 L1200,120 L0,120 Z' fill='%2303a9f4' fill-opacity='0.7'/%3E%3C/svg%3E");animation-duration:1.1s}
+@keyframes waveMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== PRO UI ===== */
+.wrap{max-width:720px;margin:0 auto;position:relative;z-index:1}
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#d9b25f,#f0d48a);display:grid;place-items:center;font-weight:900;color:#1a1206;font-size:22px;box-shadow:0 8px 24px rgba(217,178,95,.4)}
+.badge{font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,198,255,.15);border:1px solid rgba(0,198,255,.35);color:#7ddcff;padding:5px 10px;border-radius:999px}
+h1{font-size:2.15rem;font-weight:900;margin:10px 0 4px;letter-spacing:-.03em;line-height:1.1}
+h1 span{background:linear-gradient(90deg,#f0d48a,#d9b25f,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:1.35rem;font-weight:800;margin:0 0 8px}
 p{margin:0 0 14px}.muted{color:var(--muted)}
 .progress{display:flex;gap:6px;margin:18px 0}
-.progress i{flex:1;height:8px;border-radius:8px;background:var(--line)}
-.progress i.on{background:var(--accent)}
-.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:22px}
+.progress i{flex:1;height:6px;border-radius:999px;background:rgba(255,255,255,.12);transition:.3s}
+.progress i.on{background:linear-gradient(90deg,#00c6ff,#d9b25f);box-shadow:0 0 12px rgba(0,198,255,.5)}
+.card{background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:12px 0 4px}
-.choice{display:block;text-align:left;font:inherit;color:inherit;background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;width:100%}
-.choice[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
-.choice b{display:block;font-size:1.1rem}.choice span{color:var(--muted);font-size:.92rem}
+.choice{display:block;text-align:left;font:inherit;color:inherit;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;width:100%;transition:.2s}
+.choice:hover{transform:translateY(-2px);border-color:rgba(217,178,95,.5)}
+.choice[aria-pressed="true"]{border-color:var(--accent);background:linear-gradient(135deg,rgba(217,178,95,.18),rgba(0,198,255,.12));box-shadow:0 0 0 1px var(--accent),0 10px 30px rgba(217,178,95,.2)}
+.choice b{display:block;font-size:1.1rem}.choice span{color:var(--muted);font-size:.9rem}
 .big{font-size:2rem;display:block;margin-bottom:4px}
-.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
-.check input{width:22px;height:22px;margin-top:4px;accent-color:var(--accent)}
-.code{display:flex;gap:8px;align-items:stretch;margin:10px 0}
-.code code{flex:1;background:#000;border:1px solid var(--line);color:#f3ecdc;border-radius:12px;padding:12px 14px;font:500 .85rem/1.5 var(--mono);overflow-x:auto;white-space:pre-wrap;word-break:break-all}
-button.btn{font:inherit;font-weight:800;border:0;border-radius:14px;padding:12px 20px;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
-button.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
-button.copy{border-radius:12px;padding:0 16px}
-.nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
-.note{background:color-mix(in srgb,var(--sun) 28%,var(--card));border-radius:14px;padding:12px 14px;font-size:.95rem;margin:14px 0 0}
-input.url{width:100%;font:500 .85rem var(--mono);padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
-a{color:var(--accent);font-weight:600}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.hidden{display:none}
+.code{background:#000;border:1px solid var(--line);border-radius:12px;padding:13px;display:flex;gap:10px;align-items:center;overflow-x:auto}
+.code code{font-family:var(--mono);font-size:.84rem;white-space:nowrap}
+.btn{background:linear-gradient(135deg,#f0d48a,#d9b25f);color:#1a1206;border:0;border-radius:12px;padding:12px 18px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(217,178,95,.3);transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(217,178,95,.4)}
+.btn.copy{margin-left:auto;flex-shrink:0;padding:9px 14px}
+.btn.ghost{background:rgba(255,255,255,.08);color:#fff;box-shadow:none;border:1px solid var(--line)}
+.url{width:100%;background:#000;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}
+.note{background:rgba(0,198,255,.08);border:1px solid rgba(0,198,255,.25);border-radius:12px;padding:12px;font-size:.92rem}
+.hidden{display:none!important}
+.err{color:#ff9a9a;font-weight:700;font-size:.92rem;margin-top:8px}
+.nav{display:flex;gap:10px;margin-top:16px}
+.nav .btn{flex:1}
+.nav .btn:disabled{opacity:.4;cursor:not-allowed}
+.footer{text-align:center;color:rgba(255,255,255,.45);font-size:.82rem;margin-top:22px}
 </style>
 </head>
 <body>
+<div class="water"><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><div class="waves"><div class="wave wave1"></div><div class="wave wave2"></div><div class="wave wave3"></div></div></div>
+
 <div class="wrap">
-  <h1>MCREZIL LINUX</h1>
-  <p class="muted">Run a real Linux on your Android 12 or newer phone, built to fit in 20 GB. No rooting, no risk to your Android, and you can remove it any time.</p>
-  <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="topbar"><div class="logo">M</div><div class="badge">✦ No Root • Android 12+</div></div>
+<h1>MCREZIL <span>LINUX</span></h1>
+<p class="muted">Kali, Ubuntu, Debian & Alpine on your phone. Pick, paste, done.</p>
+<div class="progress" id="progress"></div>
 
-  <section class="card step" data-title="Check your phone">
-    <h2>1. Check your phone</h2>
-    <p class="muted">Tick each box. If one is not true yet, fix it first so the install goes smoothly.</p>
-    <label class="check"><input type="checkbox" class="req"><span>Android 12 or newer</span></label>
-    <label class="check"><input type="checkbox" class="req"><span>At least 20 GB of free storage (Kali needs 10 to 14 GB, other desktops about 6 GB)</span></label>
-    <label class="check"><input type="checkbox" class="req"><span>The phone is charged above 50% or plugged in</span></label>
-    <label class="check"><input type="checkbox" class="req"><span>You are on Wi-Fi, because downloads are large</span></label>
-  </section>
+<section class="card step" data-title="Pick Linux">
+<h2>1. Pick Linux</h2>
+<div class="grid" id="distros">
+<button class="choice" data-v="ubuntu" aria-pressed="true"><span class="big">🟠</span><b>Ubuntu</b><span>Friendly • Desktop ~8 GB</span></button>
+<button class="choice" data-v="debian" aria-pressed="false"><span class="big">🔴</span><b>Debian</b><span>Stable & light • ~8 GB</span></button>
+<button class="choice" data-v="alpine" aria-pressed="false"><span class="big">🔵</span><b>Alpine</b><span>Tiny • Terminal only • ~1 GB</span></button>
+<button class="choice" data-v="kali" aria-pressed="false"><span class="big">🛡️</span><b>Kali</b><span>Security tools • Top10 ~10 GB</span></button>
+</div>
+<p class="note hidden" id="alpineNote">Alpine is terminal-only. Desktop not available.</p>
+</section>
 
-  <section class="card step hidden" data-title="Get two apps">
-    <h2>2. Install two free apps</h2>
-    <p><b>Termux</b> runs the installer. Get it from <a href="https://f-droid.org/packages/com.termux/" target="_blank" rel="noopener">F-Droid</a>, not the Play Store, because the Play Store version is outdated and will not work.</p>
-    <p><b>A desktop viewer</b> shows your Linux desktop. For Ubuntu and Debian, install “VNC Viewer” by RealVNC from the Play Store. For Kali, install <b>NetHunter KeX</b> from the <a href="https://store.nethunter.com/" target="_blank" rel="noopener">NetHunter Store</a>. Skip this if you only want the terminal.</p>
-    <label class="check"><input type="checkbox" class="req"><span>Termux is installed and opened once</span></label>
-    <label class="check"><input type="checkbox" class="req"><span>Termux battery setting is “Unrestricted” (Settings > Apps > Termux > Battery)</span></label>
-    <p class="note"><b>Android 12 and 13 tip:</b> Android can close Linux in the background (you see “signal 9”). On Android 14 or newer, turn on <b>Disable child process restrictions</b> in Developer options. On 12 and 13, connect the phone to a computer once and run <code>adb shell "settings put global settings_enable_monitor_phantom_procs false"</code>.</p>
-  </section>
+<section class="card step hidden" data-title="How to use">
+<h2>2. How will you use it?</h2>
+<div class="grid" id="modes">
+<button class="choice" data-v="desktop" aria-pressed="true"><span class="big">🖥️</span><b>Desktop</b><span>Windows, mouse & apps • ~8 GB</span></button>
+<button class="choice" data-v="terminal" aria-pressed="false"><span class="big">⌨️</span><b>Terminal</b><span>Text only • ~2 GB</span></button>
+</div>
+<div id="toolsBox" class="hidden">
+<h2 style="margin-top:16px">3. Kali tools</h2>
+<div class="grid" id="tools">
+<button class="choice" data-v="standard" aria-pressed="true"><b>Standard</b><span>NetHunter image</span></button>
+<button class="choice" data-v="top10" aria-pressed="false"><b>Top 10</b><span>+ 2-4 GB</span></button>
+<button class="choice" data-v="web" aria-pressed="false"><b>Web</b><span>+ 3-5 GB</span></button>
+</div>
+</div>
+</section>
 
-  <section class="card step hidden" data-title="Choose">
-    <h2>3. Pick your Linux</h2>
-    <div class="grid" id="distros">
-      <button class="choice" data-v="ubuntu" aria-pressed="true"><span class="big">🟠</span><b>Ubuntu</b><span>Friendly. Most help online.</span></button>
-      <button class="choice" data-v="debian" aria-pressed="false"><span class="big">🔴</span><b>Debian</b><span>Stable and lighter.</span></button>
-      <button class="choice" data-v="alpine" aria-pressed="false"><span class="big">🏔️</span><b>Alpine</b><span>Tiny. Terminal only.</span></button>
-      <button class="choice" data-v="kali" aria-pressed="false"><span class="big">🐉</span><b>Kali</b><span>Security tools. Official NetHunter build.</span></button>
-    </div>
-    <div id="toolsBox" class="hidden">
-      <h2 style="margin-top:18px">Which Kali tools?</h2>
-      <div class="grid" id="tools">
-        <button class="choice" data-v="standard" aria-pressed="true"><span class="big">🧰</span><b>Standard</b><span>NetHunter image tools. Smallest.</span></button>
-        <button class="choice" data-v="top10" aria-pressed="false"><span class="big">🔟</span><b>Top 10</b><span>Adds Kali’s top tools. +2 to 4 GB.</span></button>
-        <button class="choice" data-v="web" aria-pressed="false"><span class="big">🌐</span><b>Web</b><span>Adds web-testing tools. +3 to 5 GB.</span></button>
-      </div>
-      <p class="note">Kali’s full tool collections are too big for a 20 GB phone, so these sets are sized to fit. Use security tools only on systems you own or have written permission to test. Tools that need Wi-Fi monitor mode or packet injection will not work on an unrooted phone.</p>
-    </div>
-    <h2 style="margin-top:18px">How will you use it?</h2>
-    <div class="grid" id="modes">
-      <button class="choice" data-v="desktop" aria-pressed="true"><span class="big">🖥️</span><b>Desktop</b><span>Windows, mouse and apps. About 3 GB.</span></button>
-      <button class="choice" data-v="terminal" aria-pressed="false"><span class="big">⌨️</span><b>Terminal</b><span>Text only. About 300 MB.</span></button>
-    </div>
-  </section>
+<section class="card step hidden" data-title="Install">
+<h2>4. Run the installer</h2>
+<p>Open Termux, paste this, press Enter.</p>
+<div class="code"><code id="cmd"></code><button class="btn copy" data-copy="cmd">Copy</button></div>
+<p class="muted" style="margin:10px 0 6px">Installer address:</p>
+<input class="url" id="url" value="https://raw.githubusercontent.com/YOUR-USERNAME/phone-linux/main/install-linux.sh" aria-label="Installer address">
+<div class="err hidden" id="urlErr">⚠️ Replace YOUR-USERNAME with your real GitHub username, or this will 404.</div>
+<p class="note">⚠️ Keep Termux open & screen on. Desktop = 10-30 mins. Installer checks free space first.</p>
+</section>
 
-  <section class="card step hidden" data-title="Install">
-    <h2>4. Run the installer</h2>
-    <p>Open Termux, paste this line, and press Enter. Then follow the prompts and wait for “All done!”</p>
-    <div class="code"><code id="cmd"></code><button class="btn copy" data-copy="cmd">Copy</button></div>
-    <p class="muted" style="margin-bottom:6px">Installer address (host <code>install-linux.sh</code> on your GitHub, then paste its “Raw” link here):</p>
-    <input class="url" id="url" value="https://raw.githubusercontent.com/YOUR-USERNAME/phone-linux/main/install-linux.sh" aria-label="Installer address">
-    <p class="note">Keep Termux open and the screen on while it works. Desktop installs take 10 to 30 minutes. The installer checks you have enough free space first and sets your background image on the Linux desktop.</p>
-  </section>
+<section class="card step hidden" data-title="Use it">
+<h2>5. Start using Linux</h2>
+<div id="desk">
+<p>Start desktop in Termux:</p>
+<div class="code"><code>linux-start</code><button class="btn copy" data-copy-text="linux-start">Copy</button></div>
+<p>Then open <b>VNC Viewer</b> (or <b>NetHunter KeX</b> for Kali) → <code>localhost:5901</code> → enter your password.</p>
+<p class="note hidden" id="kexnote">Kali tip: choose <b>full</b> image for desktop. In KeX, user <b>kali</b>, port <b>5901</b>.</p>
+<p class="muted">To stop: <code>linux-stop</code></p>
+</div>
+<div id="termBox" class="hidden">
+<p>Open terminal in Termux:</p>
+<div class="code"><code>linux-terminal</code><button class="btn copy" data-copy-text="linux-terminal">Copy</button></div>
+</div>
+</section>
 
-  <section class="card step hidden" data-title="Use it">
-    <h2>5. Start using Linux</h2>
-    <div id="desk">
-      <p>Start the desktop by typing this in Termux:</p>
-      <div class="code"><code>linux-start</code><button class="btn copy" data-copy-text="linux-start">Copy</button></div>
-      <p>Then open your viewer (<b>VNC Viewer</b>, or <b>NetHunter KeX</b> for Kali), connect to <code>localhost:5901</code>, and enter the password you chose. Your Linux desktop appears.</p>
-      <p class="note hidden" id="kexnote">Kali tip: in the installer, choose the <b>full</b> image so the desktop is included. In KeX, set the user to <b>kali</b> and the port to <b>5901</b>.</p>
-      <p class="muted">To stop it later, type <code>linux-stop</code>.</p>
-    </div>
-    <p>For a plain terminal at any time, type:</p>
-    <div class="code"><code>linux-terminal</code><button class="btn copy" data-copy-text="linux-terminal">Copy</button></div>
-    <p class="note"><b>Want to replace Android completely?</b> That needs an unlocked bootloader and a build made for your exact phone model. Look up your model on <a href="https://wiki.postmarketos.org/wiki/Devices" target="_blank" rel="noopener">postmarketOS</a> or <a href="https://devices.ubuntu-touch.io/" target="_blank" rel="noopener">Ubuntu Touch</a>. It can erase your data and void your warranty, so back up first.</p>
-  </section>
-
-  <div class="nav">
-    <button class="btn ghost" id="back">Back</button>
-    <button class="btn" id="next">Next</button>
-  </div>
+<div class="nav">
+<button class="btn ghost" id="back" disabled>← Back</button>
+<button class="btn" id="next">Next →</button>
+</div>
+<div class="footer">MCREZIL • Built for Android • No root needed</div>
 </div>
 
 <script>
+let distro="ubuntu", mode="desktop", tools="standard", i=0;
 const steps=[...document.querySelectorAll(".step")];
-let i=0, distro="ubuntu", mode="desktop", tools="standard";
-const prog=document.getElementById("progress");
-steps.forEach(()=>prog.appendChild(document.createElement("i")));
-
-function canAdvance(){return [...steps[i].querySelectorAll(".req")].every(c=>c.checked);}
+const progress=document.getElementById("progress");
+progress.innerHTML=steps.map(()=>"<i></i>").join("");
+function cleanUrl(raw){return (raw||"").trim().replace(/["'`\\;|&$()<> \n\r\t]/g,"");}
+function isValidUrl(u){try{const p=new URL(u);return p.protocol==="https:"&&u.endsWith("install-linux.sh")&&!u.includes("YOUR-USERNAME");}catch{return false;}}
 function render(){
-  steps.forEach((s,k)=>s.classList.toggle("hidden",k!==i));
-  [...prog.children].forEach((p,k)=>p.classList.toggle("on",k<=i));
-  document.getElementById("back").style.visibility=i?"visible":"hidden";
-  const n=document.getElementById("next");
-  n.textContent=i===steps.length-1?"Start over":"Next";
-  n.disabled=i<steps.length-1&&!canAdvance();
-  n.style.opacity=n.disabled?.5:1;
-  const u=document.getElementById("url").value.trim();
-  const bg=u.endsWith("install-linux.sh")?" BG_URL="+u.replace(/install-linux\.sh$/,"background.jpg"):"";
-  const cmd=`curl -fsSL ${u} |${bg} bash -s -- ${distro} ${mode}${distro==="kali"?" "+tools:""}`;
+  const urlEl=document.getElementById("url");
+  const u=cleanUrl(urlEl.value);
+  if(urlEl.value!==u) urlEl.value=u;
+  const valid=isValidUrl(u);
+  document.getElementById("urlErr").classList.toggle("hidden",valid);
+  const bg=u.endsWith("install-linux.sh")?" BG_URL="+JSON.stringify(u.replace(/install-linux\.sh$/,"background.jpg")):"";
+  const cmd=`curl -fsSL '${u}' -o /tmp/install-linux.sh &&${bg} bash /tmp/install-linux.sh ${distro} ${mode}${distro==="kali"?" "+tools:""}`;
   document.getElementById("toolsBox").classList.toggle("hidden",distro!=="kali");
   document.getElementById("kexnote").classList.toggle("hidden",distro!=="kali");
   document.getElementById("cmd").textContent=cmd;
   document.getElementById("desk").classList.toggle("hidden",mode!=="desktop");
+  document.getElementById("termBox").classList.toggle("hidden",mode==="desktop");
+  document.getElementById("alpineNote").classList.toggle("hidden",distro!=="alpine");
+  steps.forEach((s,idx)=>s.classList.toggle("hidden",idx!==i));
+  [...progress.children].forEach((p,idx)=>p.classList.toggle("on",idx<=i));
+  document.getElementById("back").disabled=i===0;
+  document.getElementById("next").textContent=i===steps.length-1?"Done ✓":"Next →";
 }
 function pick(groupId,set){
   document.getElementById(groupId).addEventListener("click",e=>{
-    const b=e.target.closest(".choice"); if(!b) return;
+    const b=e.target.closest(".choice");if(!b)return;
     document.querySelectorAll(`#${groupId} .choice`).forEach(x=>x.setAttribute("aria-pressed",x===b));
-    set(b.dataset.v); render();
+    set(b.dataset.v);render();
   });
 }
-pick("distros",v=>{distro=v; if(v==="alpine"){mode="terminal";
-  document.querySelectorAll("#modes .choice").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v==="terminal"));}});
+pick("distros",v=>{distro=v;if(v==="alpine"){mode="terminal";document.querySelectorAll("#modes .choice").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v==="terminal"));}});
 pick("tools",v=>{tools=v});
-pick("modes",v=>{mode=v; if(v==="desktop"&&distro==="alpine"){distro="ubuntu";
-  document.querySelectorAll("#distros .choice").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v==="ubuntu"));}});
+pick("modes",v=>{if(v==="desktop"&&distro==="alpine"){alert("Alpine is terminal-only. Pick Ubuntu, Debian or Kali for Desktop.");return;}mode=v;});
 document.getElementById("url").addEventListener("input",render);
-document.addEventListener("change",render);
-document.getElementById("next").onclick=()=>{ i=i===steps.length-1?0:i+1; render(); scrollTo(0,0); };
-document.getElementById("back").onclick=()=>{ i=Math.max(0,i-1); render(); scrollTo(0,0); };
-document.addEventListener("click",async e=>{
-  const b=e.target.closest(".copy"); if(!b) return;
-  const text=b.dataset.copyText||document.getElementById(b.dataset.copy).textContent;
-  try{await navigator.clipboard.writeText(text); b.textContent="Copied!";}catch{b.textContent="Select and copy";}
-  setTimeout(()=>b.textContent="Copy",1800);
-});
+document.getElementById("next").onclick=()=>{if(i===steps.length-1){window.scrollTo(0,0);return;}i++;render();scrollTo(0,0);};
+document.getElementById("back").onclick=()=>{i=Math.max(0,i-1);render();scrollTo(0,0);};
+document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const text=b.dataset.copyText||document.getElementById(b.dataset.copy).textContent;try{await navigator.clipboard.writeText(text);b.textContent="Copied!";}catch{b.textContent="Select and copy";}setTimeout(()=>b.textContent="Copy",1800);});
 render();
 </script>
 </body>
